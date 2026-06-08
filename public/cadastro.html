@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro - ShinyHair</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">ShinyHair 💗</div>
+
+    <input type="text" id="nome" placeholder="Digite seu nome" required>
+    <input type="email" id="email" placeholder="Digite seu email" required>
+    <input type="password" id="senha" placeholder="Digite sua senha" required>
+
+    <button onclick="cadastrar()">Cadastrar</button>
+
+    <div class="link">
+        <a href="index.html">Já tenho conta → Entrar</a>
+    </div>
+
+</div>
+
+<script>
+async function cadastrar() {
+    const nome = document.getElementById("nome").value;
+    const email = document.getElementById("email").value;
+    const senha = document.getElementById("senha").value;
+
+    try {
+        const res = await fetch("/api/cadastro", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nome, email, senha })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+            alert("Cadastro realizado! Faça login.");
+            window.location.href = "index.html";
+        } else {
+            alert(data.mensagem);
+        }
+    } catch (err) {
+        alert("Erro ao conectar com o servidor.");
+    }
+}
+</script>
+
+</body>
+</html>

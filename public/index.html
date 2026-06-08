@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ShinyHair</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        ShinyHair 
+    </div>
+
+    <form id="loginForm">
+
+        <input type="email" id="email" placeholder="Digite seu email" required>
+
+        <input type="password" id="senha" placeholder="Digite sua senha" required>
+
+        <button type="submit">
+            Entrar
+        </button>
+
+    </form>
+    
+    <div class="link">
+        <a href="cadastro.html">Não tenho conta → Cadastrar</a>
+    </div>
+
+</div>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const senha = document.getElementById("senha").value;
+
+    try {
+        const res = await fetch("/api/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, senha })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+            window.location.href = "home.html";
+        } else {
+            alert(data.mensagem || "Email ou senha incorretos.");
+        }
+    } catch (err) {
+        alert("Erro ao conectar com o servidor.");
+    }
+});
+</script>
+
+</body>
+</html>

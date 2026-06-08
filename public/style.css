@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(125deg, #be1a61, #ffffff);
+}
+
+.container{
+    width: 350px;
+    padding: 40px;
+
+    background: rgba(143, 33, 33, 0.15);
+
+    border-radius: 20px;
+
+    backdrop-filter: blur(15px);
+
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.644);
+
+    text-align: center;
+}
+
+.logo{
+    font-size: 35px;
+    font-weight: 600;
+
+    color: #be1a61;
+
+    margin-bottom: 25px;
+
+    text-shadow: 0 0 15px #ffffff;
+}
+
+input{
+    width: 100%;
+
+    padding: 14px;
+
+    margin: 10px 0;
+
+    border: none;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    font-size: 15px;
+}
+
+button{
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 15px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #be1a61;
+
+    color: #333;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+button:hover{
+    transform: scale(1.03);
+
+    box-shadow: 0 0 20px whitesmoke;
+}
+
+.link{
+    margin-top: 15px;
+}
+
+.link a{
+    color: #be1a61;
+
+    text-decoration: none;
+
+    font-size: 14px;
+}
+
+.link a:hover{
+    text-decoration: underline;
+}
+
+.botao-cronograma {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.botao-cronograma button {
+    padding: 12px 20px;
+    border: none;
+    background: #ff69b4;
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+

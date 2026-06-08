@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Quiz ShinyHair</title>
+
+<link rel="stylesheet" href="home.css?v=7">
+
+</head>
+
+<body>
+
+<div class="glitter"></div>
+
+<header>
+
+    <div class="logo">
+        ShinyHair 
+    </div>
+
+    <nav>
+
+        <a href="home.html">Início</a>
+
+
+    </nav>
+
+</header>
+
+<section class="quiz-container">
+
+    <div class="quiz-box">
+
+        <div class="progresso">
+
+            <div id="barra"></div>
+
+        </div>
+
+        <p id="contador"></p>
+
+        <h1 id="pergunta"></h1>
+
+        <div class="opcoes"></div>
+
+        <button class="avancar-btn" onclick="avancar()">
+            Avançar
+        </button>
+
+    </div>
+
+</section>
+
+<script>
+
+const perguntas = [
+
+{
+    pergunta:
+    "Você lava seu cabelo quantas vezes por semana? ",
+
+    respostas:[
+        "1 vez (não recomendado)",
+        "2 vezes",
+        "3 vezes (recomendado)",
+        "Todos os dias"
+    ]
+},
+
+{
+    pergunta:
+    "Seu cabelo possui frizz? ",
+
+    respostas:[
+        "Muito",
+        "Um pouco",
+        "Quase nada"
+    ]
+},
+
+{
+    pergunta:
+    "Você usa chapinha ou secador? ",
+
+    respostas:[
+        "Sempre",
+        "Às vezes",
+        "Nunca"
+    ]
+},
+
+{
+    pergunta:
+    "Seu cabelo quebra com facilidade? ",
+
+    respostas:[
+        "Sim",
+        "Um pouco",
+        "Não"
+    ]
+}
+
+];
+
+let perguntaAtual = 0;
+
+let respostaSelecionada = "";
+
+let pontosHidratacao = 0;
+let pontosNutricao = 0;
+let pontosReconstrucao = 0;
+
+function carregarPergunta(){
+
+    document.getElementById("contador").innerHTML =
+    `Pergunta ${perguntaAtual + 1} de ${perguntas.length}`;
+
+    document.getElementById("pergunta").innerHTML =
+    perguntas[perguntaAtual].pergunta;
+
+    let opcoes =
+    document.querySelector(".opcoes");
+
+    opcoes.innerHTML = "";
+
+    perguntas[perguntaAtual].respostas.forEach(resposta => {
+
+        opcoes.innerHTML += `
+
+        <button onclick="selecionarResposta(this)">
+            ${resposta}
+        </button>
+
+        `;
+
+    });
+
+    let progresso =
+    ((perguntaAtual + 1) / perguntas.length) * 100;
+
+    document.getElementById("barra").style.width =
+    progresso + "%";
+}
+
+function selecionarResposta(botao){
+
+    let botoes =
+    document.querySelectorAll(".opcoes button");
+
+    botoes.forEach(btn => {
+
+        btn.classList.remove("selecionado");
+
+    });
+
+    botao.classList.add("selecionado");
+
+    respostaSelecionada = botao.innerHTML;
+
+}
+
+function avancar(){
+
+    if(respostaSelecionada == ""){
+
+        alert("Escolha uma resposta ");
+
+        return;
+    }
+
+    if(perguntaAtual == 0){
+
+        if(respostaSelecionada.includes("Todos os dias")){
+
+            pontosHidratacao += 2;
+        }
+
+        if(respostaSelecionada.includes("1 vez")){
+
+            pontosNutricao += 1;
+        }
+
+    }
+
+    if(perguntaAtual == 1){
+
+        if(respostaSelecionada.includes("Muito")){
+
+            pontosNutricao += 2;
+        }
+
+    }
+
+    if(perguntaAtual == 2){
+
+        if(respostaSelecionada.includes("Sempre")){
+
+            pontosReconstrucao += 3;
+        }
+
+    }
+
+    if(perguntaAtual == 3){
+
+        if(respostaSelecionada.includes("Sim")){
+
+            pontosReconstrucao += 2;
+        }
+
+    }
+
+    respostaSelecionada = "";
+
+    perguntaAtual++;
+
+    if(perguntaAtual < perguntas.length){
+
+        carregarPergunta();
+
+    }
+
+    else{
+
+        mostrarResultado();
+
+    }
+
+}
+
+function mostrarResultado(){
+
+    const quizBox =
+    document.querySelector(".quiz-box");
+
+    let resultadoFinal = "";
+
+    if(
+        pontosReconstrucao >
+        pontosHidratacao
+        &&
+        pontosReconstrucao >
+        pontosNutricao
+    ){
+
+        resultadoFinal = `
+
+        <h1>
+            Seu cabelo precisa de reconstrução
+        </h1>
+
+        <p class="resultado-texto">
+
+            Seu cabelo apresenta sinais de danos
+            causados por calor ou quebra.
+
+             <p>Reconstrução: 2x por mês</p>
+
+             <p>Hidratação: 2x por semana</p>
+
+        </p>
+
+        `;
+    }
+
+    else if(
+        pontosNutricao >
+        pontosReconstrucao
+        &&
+        pontosNutricao >
+        pontosHidratacao
+    ){
+
+        resultadoFinal = `
+
+        <h1>
+            Seu cabelo precisa de nutrição 
+        </h1>
+
+        <p class="resultado-texto">
+
+            Seu cabelo pode estar com frizz
+            e precisando de mais nutrientes.
+
+            <p>Nutrição: 2x por semana</p>
+
+            <p>Hidratação: 1x por semana</p>
+
+        </p>
+
+        `;
+    }
+
+    else{
+
+        resultadoFinal = `
+
+        <h1>
+            Seu cabelo precisa de hidratação 
+        </h1>
+
+        <p class="resultado-texto">
+
+            Seu cabelo precisa repor água
+            e recuperar brilho e maciez.
+
+            <p>Hidratação: 3x por semana</p>
+
+            <p>Nutrição: 1x por semana</p>
+
+        </p>
+
+        `;
+    }
+
+    quizBox.innerHTML = `
+
+    ${resultadoFinal}
+
+    <a href="home.html">
+
+        <button class="finalizar-btn">
+            Finalizar
+        </button>
+
+    </a>
+
+    `;
+}
+
+carregarPergunta();
+
+</script>
+
+</body>
+</html>
