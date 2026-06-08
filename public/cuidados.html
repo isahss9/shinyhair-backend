@@ -8,7 +8,7 @@
 body{
     margin:0;
     font-family:Arial;
-    background: linear-gradient(135deg,#ff4fa3,#ffdbe9);
+    background:linear-gradient(135deg,#ff4fa3,#ffdbe9);
     color:white;
 }
 header{
@@ -43,129 +43,108 @@ h1{
 }
 .cards{
     display:grid;
-    grid-template-columns:repeat(2, 1fr);
+    grid-template-columns:repeat(2,1fr);
     gap:25px;
-}
-.cards.linha-baixo{
-    grid-template-columns:repeat(2, 1fr);
-    justify-items:center;
-    margin-top:25px;
-}
-.cards.linha-baixo .card-link,
-.cards.linha-baixo .card{
-    width:100%;
-    max-width:500px;
+    max-width:900px;
+    margin:auto;
 }
 .card{
     background:rgba(255,255,255,0.18);
     backdrop-filter:blur(10px);
     border-radius:25px;
-    overflow:hidden;
+    padding:30px;
+    text-align:center;
     box-shadow:0 10px 30px rgba(0,0,0,0.1);
     transition:0.3s;
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.3);
 }
 .card:hover{
     transform:translateY(-8px);
 }
-.card img{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-}
-.card-content{
-    padding:20px;
-}
-.card-content h2{
+.card h2{
     margin-top:0;
+    font-size:22px;
 }
-.card-content p{
+.card p{
+    font-size:15px;
     line-height:1.6;
+    opacity:0.9;
 }
 .card-link{
-    text-decoration: none;
-    color: inherit;
-    display: block;
+    text-decoration:none;
+    color:inherit;
+    display:block;
+}
+.glitter-dot{
+    position:absolute;
+    border-radius:50%;
+    background:gold;
+    animation:twinkle 2s infinite alternate;
+}
+@keyframes twinkle{
+    from{opacity:0.15;transform:scale(0.8);}
+    to{opacity:0.7;transform:scale(1.2);}
 }
 </style>
 </head>
 <body>
 <header>
-<div class="logo">
-    ShinyHair 
-</div>
-<nav>
-    <a href="home.html">Início</a>
-</nav>
+<div class="logo">ShinyHair</div>
+<nav><a href="home.html">Início</a></nav>
 </header>
 <div class="container">
-<h1>Cuidados Capilares </h1>
-<p class="sub">
-Os melhores cuidados para manter seu cabelo saudável, brilhoso e forte 
-</p>
+<h1>Cuidados Capilares</h1>
+<p class="sub">Os melhores cuidados para manter seu cabelo saudável, brilhoso e forte</p>
 
-<!-- LINHA DE CIMA -->
 <div class="cards">
 
-<a href="hidratacao.html" class="card-link">
+<a href="rotina-manha.html" class="card-link">
 <div class="card">
-<img src="https://plus.unsplash.com/premium_photo-1728693697249-1d56feca531a?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-<div class="card-content">
-<h2> Hidratação</h2>
-<p>Aprenda como hidratar corretamente seu cabelo e devolver brilho e maciez.</p>
-</div>
+<div class="glitter-dot" style="width:5px;height:5px;top:10px;left:18px;animation-delay:0s"></div>
+<div class="glitter-dot" style="width:3px;height:3px;top:25px;right:14px;animation-delay:0.4s"></div>
+<div class="glitter-dot" style="width:4px;height:4px;bottom:20px;left:25px;animation-delay:0.8s"></div>
+<div class="glitter-dot" style="width:3px;height:3px;bottom:35px;right:20px;animation-delay:1.1s"></div>
+<h2>Rotina da manhã</h2>
+<p>Leave-in, penteado leve e protetor térmico antes de sair.</p>
 </div>
 </a>
 
-<a href="protecao.html" class="card-link">
+<a href="rotina-noturna.html" class="card-link">
 <div class="card">
-<img src="https://plus.unsplash.com/premium_photo-1740761649115-673e4baa41a0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-<div class="card-content">
-<h2> Proteção térmica</h2>
-<p>Antes de usar secador, chapinha ou babyliss, use protetor térmico. Isso evita danos causados pelo calor e protege a fibra capilar.</p>
+<div class="glitter-dot" style="width:4px;height:4px;top:15px;right:22px;animation-delay:0.3s"></div>
+<div class="glitter-dot" style="width:5px;height:5px;top:35px;left:12px;animation-delay:0.7s"></div>
+<div class="glitter-dot" style="width:3px;height:3px;bottom:25px;right:30px;animation-delay:1s"></div>
+<div class="glitter-dot" style="width:4px;height:4px;bottom:15px;left:20px;animation-delay:0.5s"></div>
+<h2>Rotina noturna</h2>
+<p>Touca de cetim, óleo nas pontas e penteados leves para dormir.</p>
 </div>
+</a>
+
+<a href="cuidados-semanais.html" class="card-link">
+<div class="card">
+<div class="glitter-dot" style="width:5px;height:5px;top:12px;left:15px;animation-delay:0.2s"></div>
+<div class="glitter-dot" style="width:3px;height:3px;top:30px;right:10px;animation-delay:0.6s"></div>
+<div class="glitter-dot" style="width:4px;height:4px;bottom:18px;right:25px;animation-delay:1.1s"></div>
+<div class="glitter-dot" style="width:3px;height:3px;bottom:30px;left:30px;animation-delay:0.9s"></div>
+<h2>Cuidados semanais</h2>
+<p>Lavagem correta, máscara hidratante e nutrição com óleos.</p>
+</div>
+</a>
+
+<a href="cuidados-mensais.html" class="card-link">
+<div class="card">
+<div class="glitter-dot" style="width:4px;height:4px;top:18px;right:18px;animation-delay:0.4s"></div>
+<div class="glitter-dot" style="width:5px;height:5px;top:10px;left:25px;animation-delay:0.9s"></div>
+<div class="glitter-dot" style="width:3px;height:3px;bottom:22px;left:15px;animation-delay:1.3s"></div>
+<div class="glitter-dot" style="width:4px;height:4px;bottom:15px;right:35px;animation-delay:0.6s"></div>
+<h2>Cuidados mensais</h2>
+<p>Reconstrução, aparar as pontas e cronograma completo.</p>
 </div>
 </a>
 
 </div>
-
-<!-- LINHA DE BAIXO -->
-<div class="cards linha-baixo">
-
-<a href="lavagem.html" class="card-link">
-<div class="card">
-<img src="https://plus.unsplash.com/premium_photo-1671148854323-6479fe1796e8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-<div class="card-content">
-<h2> Lavagem correta</h2>
-<p>Evite água muito quente e excesso de shampoo. Prefira lavar com água morna ou fria para manter brilho e saúde nos fios.</p>
-</div>
-</div>
-</a>
-
-<a href="nutricao.html" class="card-link">
-<div class="card">
-<img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-<div class="card-content">
-<h2> Nutrição</h2>
-<p>Óleos capilares ajudam a controlar o frizz e devolver nutrientes ao cabelo. Argan, coco e rícino são ótimos aliados.</p>
-</div>
-</div>
-</a>
-
-</div>
-
-<!-- CARD SOLTO -->
-<div style="display:flex; justify-content:center; margin-top:25px;">
-<a href="cuidados-noturnos.html" class="card-link" style="max-width:500px; width:100%;">
-<div class="card">
-<img src="https://images.unsplash.com/photo-1706120475559-119ef9294109?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-<div class="card-content">
-<h2> Cuidados noturnos</h2>
-<p>Fronhas e toucas de cetim ajudam a evitar frizz e quebra durante o sono, mantendo o cabelo mais alinhado.</p>
-</div>
-</div>
-</a>
-</div>
-
 </div>
 </body>
 </html>
