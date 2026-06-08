@@ -565,3 +565,7 @@ button:hover{
     color:white;
 }
 
+.hero-text a {
+    display: block;
+    margin-bottom: 15px;
+}
