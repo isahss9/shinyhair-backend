@@ -32,7 +32,7 @@ async function cadastrar() {
     const senha = document.getElementById("senha").value;
 
     try {
-        const res = await fetch("/api/cadastro", {
+        const res = await fetch("https://shinyhair-backend-production.up.railway.app/api/cadastro", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nome, email, senha })

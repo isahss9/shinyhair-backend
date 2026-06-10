@@ -46,7 +46,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     const senha = document.getElementById("senha").value;
 
     try {
-        const res = await fetch("/api/login", {
+        const res = await fetch("https://shinyhair-backend-production.up.railway.app/api/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, senha })

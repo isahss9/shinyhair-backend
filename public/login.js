@@ -1,7 +1,7 @@
 // Verificação de sessão via API
 async function verificarSessao() {
     try {
-        const res = await fetch("/api/sessao");
+        const res = await fetch("https://shinyhair-backend-production.up.railway.app/api/sessao");
         if (!res.ok) {
             window.location.href = "index.html";
         } else {
@@ -15,7 +15,7 @@ async function verificarSessao() {
 }
 
 async function logout() {
-    await fetch("/api/logout", { method: "POST" });
+    await fetch("https://shinyhair-backend-production.up.railway.app/api/logout", { method: "POST" });
     window.location.href = "index.html";
 }
 

@@ -4,7 +4,7 @@ let usuarioAtual = null;
 
 async function carregarUsuario() {
     try {
-        const res = await fetch("/api/sessao");
+        const res = await fetch("https://shinyhair-backend-production.up.railway.app/api/sessao");
 
         if (!res.ok) {
             alert("Faça login para acessar o fórum.");
@@ -33,7 +33,7 @@ async function criarPost() {
         return;
     }
 
-    await fetch("/api/posts", {
+    await fetch("https://shinyhair-backend-production.up.railway.app/api/posts", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -50,7 +50,7 @@ async function criarPost() {
 
 async function carregarPosts() {
 
-    const res = await fetch("/api/posts");
+    const res = await fetch("https://shinyhair-backend-production.up.railway.app/api/posts");
 
     const posts = await res.json();
 
@@ -214,7 +214,7 @@ async function enviarResposta(postId) {
         return;
     }
 
-    await fetch("/api/respostas", {
+    await fetch("https://shinyhair-backend-production.up.railway.app/api/respostas", {
         method:"POST",
         headers:{
             "Content-Type":"application/json"
