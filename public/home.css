@@ -395,7 +395,7 @@ button:hover{
 
 /* BOLA DE CIMA */
 .top-circle{
-    top:0;
+    top: 10px;
     right: 20px;
 }
 
