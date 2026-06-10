@@ -587,6 +587,6 @@ button:hover{
 /* BOLA FÓRUM */
 .forum-circle{
     position:absolute;
-    top:10px;
-    left:70px;
+    top: -40px;
+    left:20px;
 }
