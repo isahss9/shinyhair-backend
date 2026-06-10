@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fórum - ShinyHair</title>
+
+<link rel="stylesheet" href="forum.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="bg-image"></div>
+
+<header>
+    <div class="logo">ShinyHair</div>
+
+    <nav>
+        <a href="home.html">Início</a>
+    </nav>
+</header>
+
+<section class="forum-container">
+
+    <h1>Fórum ShinyHair</h1>
+
+    <p>
+        Compartilhe dúvidas, dicas, experiências e ajude outras pessoas.
+    </p>
+
+    <div class="novo-post">
+
+        <textarea
+            id="conteudoPost"
+            placeholder="Escreva sua dúvida, dica ou comentário..."
+        ></textarea>
+
+        <button onclick="criarPost()">
+            Publicar
+        </button>
+
+    </div>
+
+    <div id="postsContainer"></div>
+
+</section>
+
+<script src="forum.js"></script>
+
+</body>
+</html>

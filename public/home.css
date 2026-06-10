@@ -583,3 +583,10 @@ button:hover{
     opacity:0.15;
     z-index:-1;
 }
+
+/* BOLA FÓRUM */
+.forum-circle{
+    position:absolute;
+    top:20px;
+    left:90px;
+}
