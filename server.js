@@ -69,7 +69,7 @@ app.get("/api/sessao", (req, res) => {
         res.json({ id: req.session.usuario.id, 
             nome: req.session.usuario.nome, 
             email: req.session.usuario.email });
-            
+
     } else {
         res.status(401).json({ mensagem: "Não autenticado." });
     }
@@ -129,6 +129,16 @@ app.get("/api/posts", async (req, res) => {
         `);
 
         for (let post of posts) {
+
+            const [curtidas] = await db.execute(
+    `SELECT COUNT(*) total
+     FROM curtidas_posts
+     WHERE post_id=?`,
+    [post.id]
+);
+
+post.curtidas =
+    curtidas[0].total;
 
             const [respostas] = await db.execute(`
                 SELECT
@@ -291,6 +301,63 @@ app.delete("/api/respostas/:id", async (req, res) => {
 
         res.status(500).json({
             mensagem: "Erro ao excluir resposta"
+        });
+    }
+});
+
+/* CURTIR POST */
+
+app.post("/api/posts/:id/curtir", async (req,res)=>{
+
+    if(!req.session.usuario){
+        return res.status(401).json({
+            mensagem:"Não autenticado"
+        });
+    }
+
+    try{
+
+        const usuarioId =
+            req.session.usuario.id;
+
+        const postId =
+            req.params.id;
+
+        const [curtida] =
+            await db.execute(
+                `SELECT * FROM curtidas_posts
+                 WHERE post_id=? AND usuario_id=?`,
+                [postId, usuarioId]
+            );
+
+        if(curtida.length > 0){
+
+            await db.execute(
+                `DELETE FROM curtidas_posts
+                 WHERE post_id=? AND usuario_id=?`,
+                [postId, usuarioId]
+            );
+
+        }else{
+
+            await db.execute(
+                `INSERT INTO curtidas_posts
+                (post_id,usuario_id)
+                VALUES (?,?)`,
+                [postId, usuarioId]
+            );
+        }
+
+        res.json({
+            sucesso:true
+        });
+
+    }catch(err){
+
+        console.error(err);
+
+        res.status(500).json({
+            mensagem:"Erro ao curtir"
         });
     }
 });

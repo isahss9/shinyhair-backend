@@ -122,6 +122,18 @@ async function carregarPosts() {
                     ${post.conteudo}
                 </div>
 
+                <div class="interacoes">
+
+                <span onclick="curtirPost(${post.id})">
+                    ❤️ ${post.curtidas || 0}
+                </span>
+
+                    <span>
+                        💬 ${post.respostas.length}
+                    </span>
+
+                </div>
+
                 <div class="acoes">
 
                     <button
@@ -151,9 +163,20 @@ async function carregarPosts() {
                     class="form-resposta">
                 </div>
 
-                <div class="respostas">
-                    ${respostasHTML}
-                </div>
+                <div class="ver-respostas"
+     onclick="toggleRespostas(${post.id})">
+
+     Ver respostas (${post.respostas.length})
+
+</div>
+
+<div class="respostas"
+     id="lista-respostas-${post.id}"
+     style="display:none;">
+
+    ${respostasHTML}
+
+</div>
 
             </div>
         `;
@@ -231,4 +254,31 @@ async function excluirResposta(id){
     carregarPosts();
 }
 
+function toggleRespostas(postId){
+
+    const lista =
+        document.getElementById(
+            `lista-respostas-${postId}`
+        );
+
+    if(lista.style.display === "none"){
+
+        lista.style.display = "block";
+
+    }else{
+
+        lista.style.display = "none";
+
+    }
+}
+
 carregarUsuario();
+
+async function curtirPost(postId){
+
+    await fetch(`/api/posts/${postId}/curtir`,{
+        method:"POST"
+    });
+
+    carregarPosts();
+}

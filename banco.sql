@@ -36,3 +36,35 @@ CREATE TABLE IF NOT EXISTS respostas (
     REFERENCES usuarios(id)
     ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS curtidas_posts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    post_id INT NOT NULL,
+    usuario_id INT NOT NULL,
+
+    FOREIGN KEY (post_id)
+    REFERENCES posts(id)
+    ON DELETE CASCADE,
+
+    FOREIGN KEY (usuario_id)
+    REFERENCES usuarios(id)
+    ON DELETE CASCADE,
+
+    UNIQUE(post_id, usuario_id)
+);
+
+CREATE TABLE IF NOT EXISTS curtidas_respostas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    resposta_id INT NOT NULL,
+    usuario_id INT NOT NULL,
+
+    FOREIGN KEY (resposta_id)
+    REFERENCES respostas(id)
+    ON DELETE CASCADE,
+
+    FOREIGN KEY (usuario_id)
+    REFERENCES usuarios(id)
+    ON DELETE CASCADE,
+
+    UNIQUE(resposta_id, usuario_id)
+);
