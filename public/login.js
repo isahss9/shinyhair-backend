@@ -1,8 +1,15 @@
-// Verificação de sessão via API
 async function verificarSessao() {
+    const token = localStorage.getItem("token");
+    if (!token) {
+        window.location.href = "index.html";
+        return;
+    }
     try {
-        const res = await fetch("https://shinyhair-backend-production.up.railway.app/api/sessao");
+        const res = await fetch("https://shinyhair-backend-production.up.railway.app/api/sessao", {
+            headers: { "Authorization": "Bearer " + token }
+        });
         if (!res.ok) {
+            localStorage.removeItem("token");
             window.location.href = "index.html";
         } else {
             const data = await res.json();
@@ -15,7 +22,8 @@ async function verificarSessao() {
 }
 
 async function logout() {
-    await fetch("https://shinyhair-backend-production.up.railway.app/api/logout", { method: "POST" });
+    localStorage.removeItem("token");
+    localStorage.removeItem("nome");
     window.location.href = "index.html";
 }
 

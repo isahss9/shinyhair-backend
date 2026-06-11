@@ -1,60 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>ShinyHair</title>
-
 <link rel="stylesheet" href="style.css">
-
 </head>
-
 <body>
-
 <div class="container">
-
-    <div class="logo">
-        ShinyHair 
-    </div>
-
+    <div class="logo">ShinyHair </div>
     <form id="loginForm">
-
         <input type="email" id="email" placeholder="Digite seu email" required>
-
         <input type="password" id="senha" placeholder="Digite sua senha" required>
-
-        <button type="submit">
-            Entrar
-        </button>
-
+        <button type="submit">Entrar</button>
     </form>
-    
     <div class="link">
         <a href="cadastro.html">Não tenho conta</a>
     </div>
-
 </div>
-
 <script>
 document.getElementById("loginForm").addEventListener("submit", async function(e) {
     e.preventDefault();
-
     const email = document.getElementById("email").value;
     const senha = document.getElementById("senha").value;
-
     try {
         const res = await fetch("https://shinyhair-backend-production.up.railway.app/api/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, senha })
         });
-
         const data = await res.json();
-
         if (res.ok) {
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("nome", data.nome);
             window.location.href = "home.html";
         } else {
             alert(data.mensagem || "Email ou senha incorretos.");
@@ -64,6 +42,5 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     }
 });
 </script>
-
 </body>
 </html>
