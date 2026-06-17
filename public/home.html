@@ -2,95 +2,195 @@
 <html lang="pt-br">
 
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>ShinyHair</title>
-
 <link rel="stylesheet" href="home.css?v=2">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+<style>
+.pagina-wrapper {
+    display: flex;
+    align-items: flex-start;
+}
+
+.anuncios-lateral {
+    width: 160px;
+    min-width: 160px;
+    padding: 20px 10px;
+    position: sticky;
+    top: 20px;
+}
+
+.anuncio {
+    width: 150px;
+    height: 280px;
+    border-radius: 15px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: transform 0.2s;
+    text-decoration: none;
+}
+
+.anuncio:hover { transform: scale(1.03); }
+.anuncio.ativo { display: flex; }
+
+.anuncio-tag {
+    font-size: 9px;
+    opacity: 0.6;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.anuncio-logo { font-size: 32px; margin-bottom: 8px; }
+
+.anuncio-titulo {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+
+.anuncio-desc {
+    font-size: 10px;
+    opacity: 0.9;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+.anuncio-btn {
+    font-size: 10px;
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    width: auto;
+}
+
+@media(max-width: 768px) {
+    .anuncios-lateral { display: none; }
+}
+</style>
 </head>
 
 <body>
 
 <div class="bg-image"></div>
-
 <div class="glitter"></div>
 
 <header>
-
-    <div class="logo">
-        ShinyHair 
-    </div>
-
-    <nav>
-        <a href="home.html">Início</a>
-    </nav>
-
+    <div class="logo">ShinyHair </div>
+    <nav><a href="home.html">Início</a></nav>
 </header>
 
+<div class="pagina-wrapper">
+
+<!-- CONTEÚDO PRINCIPAL -->
+<div style="flex:1;">
 <section class="hero">
-
     <div class="hero-text">
-
-        <h1>
-            Seu guia de cuidados capilares 
-        </h1>
-
-        <p>
-            Descubra rotinas, dicas e cuidados personalizados
-            para deixar seu cabelo saudável, brilhoso e incrível.
-        </p>
-
-        <a href="cronograma.html">
-            <button>
-                O que é um cronograma?
-            </button>
-        </a>
-
+        <h1>Seu guia de cuidados capilares </h1>
+        <p>Descubra rotinas, dicas e cuidados personalizados para deixar seu cabelo saudável, brilhoso e incrível.</p>
+        <a href="cronograma.html"><button>O que é um cronograma?</button></a>
         <br>
-
-        <a href="quiz.html">
-            <button>
-                Meu cronograma perfeito
-            </button>
-        </a>
-
+        <a href="quiz.html"><button>Meu cronograma perfeito</button></a>
     </div>
 
     <div class="circles-container">
-
         <a href="forum.html" class="circle-link forum-circle">
-    <div class="circle">
-        <span>Fórum</span>
+            <div class="circle"><span>Fórum</span></div>
+        </a>
+        <a href="cuidados.html" class="circle-link top-circle">
+            <div class="circle"><span>Cuidados</span></div>
+        </a>
+        <a href="produtos.html" class="circle-link bottom-circle">
+            <div class="circle"><span>Produtos</span></div>
+        </a>
     </div>
-</a>
+</section>
+</div>
 
-    <a href="cuidados.html" class="circle-link top-circle">
-        <div class="circle">
-            <span>Cuidados</span>
-        </div>
+<!-- ANÚNCIOS DIREITA -->
+<div class="anuncios-lateral" id="anunciosDireita">
+
+    <a class="anuncio ativo" href="https://www.chevrolet.com.br/" target="_blank"
+       style="background:linear-gradient(135deg,#cc0000,#ff4444);color:white;">
+        <div class="anuncio-tag">Anúncio</div>
+        <div class="anuncio-logo">🚗</div>
+        <div class="anuncio-titulo">Chevrolet</div>
+        <div class="anuncio-desc">Conheça os novos modelos 2025. Ofertas especiais para você!</div>
+        <button class="anuncio-btn" style="background:white;color:#cc0000;">Ver ofertas</button>
     </a>
 
-    <a href="produtos.html" class="circle-link bottom-circle">
-        <div class="circle">
-            <span>Produtos</span>
-        </div>
+    <a class="anuncio" href="https://banco.bradesco/html/classic/index.shtm" target="_blank"
+       style="background:linear-gradient(135deg,#cc0000,#8b0000);color:white;">
+        <div class="anuncio-tag">Anúncio</div>
+        <div class="anuncio-logo">🏦</div>
+        <div class="anuncio-titulo">Bradesco</div>
+        <div class="anuncio-desc">Soluções financeiras completas para você e sua família.</div>
+        <button class="anuncio-btn" style="background:white;color:#cc0000;">Saiba mais</button>
     </a>
 
+    <a class="anuncio" href="https://www.ford.com.br/" target="_blank"
+       style="background:linear-gradient(135deg,#003478,#0057b8);color:white;">
+        <div class="anuncio-tag">Anúncio</div>
+        <div class="anuncio-logo">🚙</div>
+        <div class="anuncio-titulo">Ford</div>
+        <div class="anuncio-desc">Built Ford Tough. Veículos que transformam sua vida.</div>
+        <button class="anuncio-btn" style="background:white;color:#003478;">Explorar</button>
+    </a>
 
+    <a class="anuncio" href="https://www.itau.com.br/" target="_blank"
+       style="background:linear-gradient(135deg,#ff6600,#ff8c00);color:white;">
+        <div class="anuncio-tag">Anúncio</div>
+        <div class="anuncio-logo">💳</div>
+        <div class="anuncio-titulo">Itaú</div>
+        <div class="anuncio-desc">Banco feito pra você. Conta digital, cartão e muito mais.</div>
+        <button class="anuncio-btn" style="background:white;color:#ff6600;">Abrir conta</button>
+    </a>
+
+    <a class="anuncio" href="https://www.bb.com.br/site/pra-voce/emprestimo/emprestimo-pessoal/credito-salario/" target="_blank"
+       style="background:linear-gradient(135deg,#003399,#ffcc00);color:white;">
+        <div class="anuncio-tag">Anúncio</div>
+        <div class="anuncio-logo">🏛️</div>
+        <div class="anuncio-titulo">Banco do Brasil</div>
+        <div class="anuncio-desc">Crédito salário com as melhores taxas do mercado.</div>
+        <button class="anuncio-btn" style="background:#ffcc00;color:#003399;">Solicitar</button>
+    </a>
+
+    <a class="anuncio" href="https://www.toyota.com.br/" target="_blank"
+       style="background:linear-gradient(135deg,#1a1a1a,#eb0a1e);color:white;">
+        <div class="anuncio-tag">Anúncio</div>
+        <div class="anuncio-logo">🚘</div>
+        <div class="anuncio-titulo">Toyota Hilux</div>
+        <div class="anuncio-desc">Hilux SRX Plus 2026. A caminhonete mais vendida do Brasil.</div>
+        <button class="anuncio-btn" style="background:#eb0a1e;color:white;">Ver modelo</button>
+    </a>
 
 </div>
 
-</section>
+</div>
 
 <script src="home.js"></script>
+<script>
+const anuncios = document.querySelectorAll("#anunciosDireita .anuncio");
+let atual = 0;
+setInterval(() => {
+    anuncios[atual].classList.remove("ativo");
+    atual = (atual + 1) % anuncios.length;
+    anuncios[atual].classList.add("ativo");
+}, 5000);
+</script>
 
 </body>
 </html>
