@@ -8,11 +8,9 @@ require("dotenv").config();
 
 const app = express();
 
+// CORS totalmente aberto para evitar qualquer bloqueio com a Vercel
 app.use(cors({
-    origin: [
-        "https://shinyhair.vercel.app",
-        "http://localhost:3000"
-    ],
+    origin: "*",
     credentials: true
 }));
 
@@ -51,7 +49,8 @@ app.post("/api/chat", async (req, res) => {
                 "Authorization": "Bearer " + process.env.GROQ_API_KEY
             },
             body: JSON.stringify({
-                model: "llama3-8b-8192",
+                // Usando um modelo atualizado e garantido da Groq
+                model: "llama-3.3-70b-versatile",
                 messages: [
                     {
                         role: "system",
@@ -64,7 +63,13 @@ app.post("/api/chat", async (req, res) => {
             })
         });
         const data = await response.json();
-        res.json({ reply: data.choices[0].message.content });
+        
+        if (data.choices && data.choices[0] && data.choices[0].message) {
+            res.json({ reply: data.choices[0].message.content });
+        } else {
+            console.error("Retorno inesperado da Groq:", data);
+            res.status(500).json({ error: "Erro na resposta da Groq. Verifique a API Key." });
+        }
     } catch (err) {
         console.error("Erro Groq:", err);
         res.status(500).json({ error: "Erro ao conectar com a IA." });
