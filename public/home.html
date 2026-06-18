@@ -75,7 +75,7 @@
 .chat-circle { 
     position: absolute; 
     top: 190px; 
-    right: -130px; 
+    right: -50px; 
 }
 .chat-ia-circle {
     background: linear-gradient(135deg, #ff4fa3, #ff85c2) !important;
@@ -121,7 +121,7 @@
             <div class="circle"><span>Produtos</span></div>
         </a>
         <a href="#" class="circle-link chat-circle" onclick="abrirChatBot(event)">
-            <div class="circle chat-ia-circle"><span>Chat IA ✨</span></div>
+            <div class="circle chat-ia-circle"><span>Shiny</span></div>
         </a>
     </div>
 </section>
@@ -192,9 +192,9 @@
 <div id="chat-overlay">
     <div id="chat-box">
         <div id="chat-header">
-            <div class="chat-avatar">💆‍♀️</div>
+            <div class="chat-avatar"></div>
             <div>
-                <div>ShinyHair IA</div>
+                <div>Shiny</div>
                 <div style="font-size:12px;font-weight:400;opacity:0.9;">Especialista em cuidados capilares</div>
             </div>
             <span class="chat-fechar" onclick="fecharChatBot()">✕</span>
@@ -227,7 +227,7 @@ function abrirChatBot(e) {
     document.getElementById('chat-overlay').classList.add('aberto');
     const msgs = document.getElementById('chat-mensagens');
     if (msgs.children.length === 0) {
-        adicionarMsg('bot', '✨ Olá! Sou a ShinyHair IA. Como posso ajudar com os cuidados do seu cabelo hoje?');
+        adicionarMsg('bot', ' Olá! Sou a Shiny. Como posso ajudar com os cuidados do seu cabelo hoje?');
     }
     setTimeout(() => document.getElementById('chat-input').focus(), 100);
 }
@@ -271,7 +271,7 @@ async function enviarMensagem() {
         adicionarMsg('bot', resposta);
     } catch (err) {
         digitando.remove();
-        adicionarMsg('bot', '😕 Ops! Não consegui responder agora. Tente novamente em instantes.');
+        adicionarMsg('bot', 'Ops! Não consegui responder agora. Tente novamente em instantes.');
     }
 }
 </script>
