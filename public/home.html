@@ -82,8 +82,67 @@
     color: #ffffff !important;
     
 }
+/* ============================================================
+   NOVA BOLHA DA ASSISTENTE VIRTUAL (SUBSTITUI O TEXTO SHINY)
+   ============================================================ */
 
+.chat-circle { 
+    position: absolute; 
+    top: 250px;       /* Altera a altura dela na tela */
+    right: 30px;      /* Move ela para a esquerda para não sumir da tela */
+    width: 140px;     /* Tamanho do círculo da boneca */
+    height: 140px;   
+    border-radius: 50%; 
+    cursor: pointer;
+    z-index: 999;
+    overflow: hidden;  /* Recorta a foto em formato perfeitamente redondo */
+    border: 4px solid #ff4fa3; /* Bordinha rosa combinando com o site */
+    background-color: #1a1a1a; /* Fundo escuro combinando com a foto */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+}
+
+/* Efeito ao passar o mouse por cima */
+.chat-circle:hover {
+    transform: scale(1.05);
+}
+
+/* Estrutura para alinhar as duas fotos uma em cima da outra */
+.avatar-container-animado {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.avatar-container-animado img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta a boneca perfeitamente dentro do círculo */
+}
+
+/* Animação que faz ela alternar as expressões (efeito GIF) */
+@keyframes efeitoAssistenteViva {
+    0%, 45% { opacity: 1; }   /* Mostra a foto 1 (Sorrindo) */
+    50%, 95% { opacity: 0; }  /* Esconde a foto 1 e mostra a foto 2 de baixo */
+    100% { opacity: 1; }      /* Volta para a foto 1 */
+}
+
+/* Aplica o efeito de piscar a cada 3 segundos */
+.avatar-frame-1 {
+    animation: efeitoAssistenteViva 3s infinite;
+    z-index: 2;
+}
+
+.avatar-frame-2 {
+    z-index: 1;
+}
 </style>
+
+
+    
 </head>
 
 <body>
