@@ -10,103 +10,76 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-.pagina-wrapper {
-    display: flex;
-    align-items: flex-start;
-}
+.pagina-wrapper { display: flex; align-items: flex-start; }
+.conteudo-principal { flex: 1; }
+.anuncios-lateral { width: 280px; min-width: 280px; padding: 20px 15px; position: sticky; top: 20px; }
+.anuncio { width: 100%; border-radius: 12px; border: 1px solid #ff4fa3; background: white; display: none; flex-direction: column; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.08); text-decoration: none; color: #333; transition: box-shadow 0.2s; }
+.anuncio:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+.anuncio.ativo { display: flex; }
+.anuncio-header { width: 100%; height: 300px; object-fit: cover; display: block; }
+.anuncio-body { padding: 15px; }
+.anuncio-tag { font-size: 10px; color: #999; margin-bottom: 6px; display: flex; align-items: center; gap: 4px; }
+.anuncio-tag::before { content: "▶"; font-size: 8px; }
+.anuncio-titulo { font-size: 18px; font-weight: 700; color: #111; margin-bottom: 8px; line-height: 1.3; }
+.anuncio-desc { font-size: 13px; color: #999; line-height: 1.5; margin-bottom: 10px; }
+.anuncio-url { font-size: 11px; color: #999; }
+.anuncio-abrir { color: #ff4fa3; font-size: 14px; font-weight: 600; display: flex; align-items: center; border-top: 1px solid #f0f0f0; padding-top: 12px; margin-top: 10px; }
+@media(max-width: 768px) { .anuncios-lateral { display: none; } }
 
-.conteudo-principal {
-    flex: 1;
-}
-
-.anuncios-lateral {
-    width: 280px;
-    min-width: 280px;
-    padding: 20px 15px;
-    position: sticky;
-    top: 20px;
-}
-
-.anuncio {
-    width: 100%;
-    border-radius: 12px;
-    border: 1px solid #ff4fa3;
-    background: rgb(255, 255, 255);
+/* ── CHAT ── */
+#chat-overlay {
     display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 9998;
+    justify-content: center;
+    align-items: center;
+}
+#chat-overlay.aberto { display: flex; }
+#chat-box {
+    width: 420px;
+    max-width: 95vw;
+    background: linear-gradient(160deg, #fff0f8, #ffffff);
+    border-radius: 28px;
+    box-shadow: 0 0 40px #ff4fa3, 0 20px 60px rgba(0,0,0,0.25);
+    display: flex;
     flex-direction: column;
     overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    text-decoration: none;
-    color: #333;
-    transition: box-shadow 0.2s;
+    max-height: 85vh;
 }
-
-.anuncio:hover {
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-}
-
-.anuncio.ativo {
-    display: flex;
-}
-
-.anuncio-header {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    display: block;
-}
-
-.anuncio-body {
-    padding: 15px;
-}
-
-.anuncio-tag {
-    font-size: 10px;
-    color: #999;
-    margin-bottom: 6px;
+#chat-header {
+    background: linear-gradient(135deg, #ff4fa3, #ff85c2);
+    color: white;
+    padding: 18px 22px;
     display: flex;
     align-items: center;
-    gap: 4px;
-}
-
-.anuncio-tag::before {
-    content: "▶";
-    font-size: 8px;
-}
-
-.anuncio-titulo {
-    font-size: 18px;
+    gap: 12px;
     font-weight: 700;
-    color: #111;
-    margin-bottom: 8px;
-    line-height: 1.3;
+    font-size: 17px;
 }
+.chat-avatar { width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 22px; }
+.chat-fechar { margin-left: auto; cursor: pointer; font-size: 22px; opacity: 0.85; }
+.chat-fechar:hover { opacity: 1; }
+#chat-mensagens { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 14px; min-height: 300px; max-height: 400px; }
+.msg { max-width: 80%; padding: 12px 16px; border-radius: 18px; font-size: 14px; line-height: 1.6; }
+.msg.bot { background: linear-gradient(135deg, #ffe0f0, #ffc8e8); color: #6b2a4e; align-self: flex-start; border-bottom-left-radius: 4px; }
+.msg.user { background: linear-gradient(135deg, #ff4fa3, #ff85c2); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+.msg.digitando { background: linear-gradient(135deg, #ffe0f0, #ffc8e8); color: #ff4fa3; align-self: flex-start; font-style: italic; opacity: 0.8; }
+#chat-input-area { display: flex; gap: 10px; padding: 16px; border-top: 1px solid #ffe0f0; background: #fff8fc; }
+#chat-input { flex: 1; padding: 12px 16px; border: 2px solid #ffc0e0; border-radius: 25px; font-family: 'Poppins', sans-serif; font-size: 14px; color: #333; outline: none; transition: border-color 0.2s; }
+#chat-input:focus { border-color: #ff4fa3; }
+#chat-enviar { width: 46px; height: 46px; border-radius: 50%; background: linear-gradient(135deg, #ff4fa3, #ff85c2); border: none; color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+#chat-enviar:hover { transform: scale(1.1); box-shadow: 0 0 15px #ff4fa3; }
 
-.anuncio-desc {
-    font-size: 13px;
-    color: #999;
-    line-height: 1.5;
-    margin-bottom: 10px;
+.chat-circle { position: absolute; bottom: -60px; left: 20px; }
+.chat-ia-circle {
+    background: linear-gradient(135deg, #ff4fa3, #ff85c2) !important;
+    color: white !important;
+    box-shadow: 0 10px 30px rgba(255,79,163,0.45), 0 0 30px #ff4fa3 !important;
 }
-
-.anuncio-url {
-    font-size: 11px;
-    color: #999;
-}
-
-.anuncio-abrir {
-    color: #ff4fa3;
-    font-size: 14px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    border-top: 1px solid #f0f0f0;
-    padding-top: 12px;
-    margin-top: 10px;
-}
-
-@media(max-width: 768px) {
-    .anuncios-lateral { display: none; }
+.chat-ia-circle:hover {
+    box-shadow: 0 0 30px white, 0 0 60px #ff4fa3 !important;
 }
 </style>
 </head>
@@ -143,6 +116,9 @@
         <a href="produtos.html" class="circle-link bottom-circle">
             <div class="circle"><span>Produtos</span></div>
         </a>
+        <a href="#" class="circle-link chat-circle" onclick="abrirChatBot(event)">
+            <div class="circle chat-ia-circle"><span>Chat IA ✨</span></div>
+        </a>
     </div>
 </section>
 </div>
@@ -150,7 +126,6 @@
 <!-- ANÚNCIOS DIREITA -->
 <div class="anuncios-lateral" id="anunciosDireita">
 
-    <!-- Chevrolet - carro vermelho esportivo -->
     <a class="anuncio ativo" href="https://www.chevrolet.com.br/" target="_blank">
         <img class="anuncio-header" src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=600&auto=format&fit=crop" alt="Chevrolet">
         <div class="anuncio-body">
@@ -162,19 +137,17 @@
         </div>
     </a>
 
-    <!-- Bradesco - banco / finanças -->
     <a class="anuncio" href="https://banco.bradesco/html/classic/index.shtm" target="_blank">
         <img class="anuncio-header" src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?q=80&w=600&auto=format&fit=crop" alt="Bradesco">
         <div class="anuncio-body">
             <div class="anuncio-tag">Anúncio</div>
             <div class="anuncio-titulo">Bradesco</div>
-            <div class="anuncio-desc">Soluções financeiras completas para você e sua família. Conta, cartão e investimentos.</div>
+            <div class="anuncio-desc">Soluções financeiras completas para você e sua família.</div>
             <div class="anuncio-url">banco.bradesco</div>
             <div class="anuncio-abrir">Abrir ›</div>
         </div>
     </a>
 
-    <!-- Ford - picape/estrada -->
     <a class="anuncio" href="https://www.ford.com.br/" target="_blank">
         <img class="anuncio-header" src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=600&auto=format&fit=crop" alt="Ford">
         <div class="anuncio-body">
@@ -186,7 +159,6 @@
         </div>
     </a>
 
-    <!-- Itaú - cartão / pagamento -->
     <a class="anuncio" href="https://www.itau.com.br/" target="_blank">
         <img class="anuncio-header" src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=600&auto=format&fit=crop" alt="Itaú">
         <div class="anuncio-body">
@@ -198,19 +170,6 @@
         </div>
     </a>
 
-    <!-- Banco do Brasil - dinheiro / investimento -->
-    <a class="anuncio" href="https://www.bb.com.br/site/pra-voce/emprestimo/emprestimo-pessoal/credito-salario/" target="_blank">
-        <img class="anuncio-header" src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=600&auto=format&fit=crop" alt="Banco do Brasil">
-        <div class="anuncio-body">
-            <div class="anuncio-tag">Anúncio</div>
-            <div class="anuncio-titulo">Banco do Brasil</div>
-            <div class="anuncio-desc">Crédito salário com as melhores taxas. Simule agora sem sair de casa.</div>
-            <div class="anuncio-url">bb.com.br</div>
-            <div class="anuncio-abrir">Abrir ›</div>
-        </div>
-    </a>
-
-    <!-- Toyota - caminhonete na estrada -->
     <a class="anuncio" href="https://www.toyota.com.br/" target="_blank">
         <img class="anuncio-header" src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?q=80&w=600&auto=format&fit=crop" alt="Toyota">
         <div class="anuncio-body">
@@ -223,11 +182,32 @@
     </a>
 
 </div>
+</div>
 
+<!-- CHAT MODAL -->
+<div id="chat-overlay">
+    <div id="chat-box">
+        <div id="chat-header">
+            <div class="chat-avatar">💆‍♀️</div>
+            <div>
+                <div>ShinyHair IA</div>
+                <div style="font-size:12px;font-weight:400;opacity:0.9;">Especialista em cuidados capilares</div>
+            </div>
+            <span class="chat-fechar" onclick="fecharChatBot()">✕</span>
+        </div>
+        <div id="chat-mensagens"></div>
+        <div id="chat-input-area">
+            <input id="chat-input" type="text" placeholder="Pergunte sobre seu cabelo..."
+                   onkeydown="if(event.key==='Enter') enviarMensagem()"/>
+            <button id="chat-enviar" onclick="enviarMensagem()">➤</button>
+        </div>
+    </div>
 </div>
 
 <script src="home.js"></script>
 <script>
+const API = "https://shinyhair-backend-production.up.railway.app";
+
 const anuncios = document.querySelectorAll("#anunciosDireita .anuncio");
 let atual = 0;
 setInterval(() => {
@@ -235,6 +215,61 @@ setInterval(() => {
     atual = (atual + 1) % anuncios.length;
     anuncios[atual].classList.add("ativo");
 }, 5000);
+
+const historico = [];
+
+function abrirChatBot(e) {
+    e.preventDefault();
+    document.getElementById('chat-overlay').classList.add('aberto');
+    const msgs = document.getElementById('chat-mensagens');
+    if (msgs.children.length === 0) {
+        adicionarMsg('bot', '✨ Olá! Sou a ShinyHair IA. Como posso ajudar com os cuidados do seu cabelo hoje?');
+    }
+    setTimeout(() => document.getElementById('chat-input').focus(), 100);
+}
+
+function fecharChatBot() {
+    document.getElementById('chat-overlay').classList.remove('aberto');
+}
+
+document.getElementById('chat-overlay').addEventListener('click', function(e) {
+    if (e.target === this) fecharChatBot();
+});
+
+function adicionarMsg(tipo, texto) {
+    const msgs = document.getElementById('chat-mensagens');
+    const div = document.createElement('div');
+    div.className = 'msg ' + tipo;
+    div.textContent = texto;
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+    return div;
+}
+
+async function enviarMensagem() {
+    const input = document.getElementById('chat-input');
+    const texto = input.value.trim();
+    if (!texto) return;
+    input.value = '';
+    adicionarMsg('user', texto);
+    historico.push({ role: 'user', content: texto });
+    const digitando = adicionarMsg('digitando', '✦ digitando...');
+    try {
+        const resp = await fetch(API + '/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ messages: historico })
+        });
+        const data = await resp.json();
+        const resposta = data.reply;
+        historico.push({ role: 'assistant', content: resposta });
+        digitando.remove();
+        adicionarMsg('bot', resposta);
+    } catch (err) {
+        digitando.remove();
+        adicionarMsg('bot', '😕 Ops! Não consegui responder agora. Tente novamente em instantes.');
+    }
+}
 </script>
 
 </body>
