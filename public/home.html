@@ -128,6 +128,72 @@
 .avatar-frame-2 {
     z-index: 1;
 }
+    /* Posição absoluta da bolha dentro do container geral */
+.chat-avatar-circle {
+    position: absolute;
+    bottom: -30px; /* Alinha na parte inferior */
+    right: 20px;   /* Alinha na parte direita equilibrando o design */
+}
+
+/* Bolha estilizada da assistente */
+.chat-circle { 
+    width: 180px;     /* Mesmo tamanho dos seus outros círculos */
+    height: 180px;   
+    border-radius: 50%; 
+    cursor: pointer;
+    overflow: hidden;  /* Recorta a foto perfeitamente em círculo */
+    background-color: #1a1a1a; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.10); /* Sombra igual às outras bolhas */
+    transition: 0.3s ease;
+}
+
+/* Efeito Hover igual ao das outras bolhas */
+.chat-circle:hover {
+    transform: scale(1.05);
+    box-shadow:
+    0 0 20px #ff69b4,
+    0 0 40px rgba(255,105,180,0.7),
+    0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* Container interno das fotos */
+.avatar-container-animado {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.avatar-container-animado img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta o rosto da boneca perfeitamente */
+}
+
+/* Animação de piscar */
+@keyframes efeitoAssistenteViva {
+    0%, 45% { opacity: 1; }   
+    50%, 95% { opacity: 0; }  
+    100% { opacity: 1; }      
+}
+
+.avatar-frame-1 {
+    animation: efeitoAssistenteViva 3s infinite;
+    z-index: 2;
+}
+
+.avatar-frame-2 {
+    z-index: 1;
+}
+
+/* Ajuste para o modo Mobile (Celular) */
+@media (max-width: 768px) {
+    .chat-avatar-circle {
+        position: static !important; /* Desativa a posição absoluta no celular */
+    }
+}
 </style>
 </head>
 
