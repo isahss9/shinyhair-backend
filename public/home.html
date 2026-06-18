@@ -72,20 +72,9 @@
 #chat-enviar { width: 46px; height: 46px; border-radius: 50%; background: linear-gradient(135deg, #ff4fa3, #ff85c2); border: none; color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
 #chat-enviar:hover { transform: scale(1.1); box-shadow: 0 0 15px #ff4fa3; }
 
-.chat-circle { 
-    position: absolute; 
-    top: 280px; 
-    right: 30px; 
-}
-.chat-ia-circle {
-    background: linear-gradient(135deg, #ff4fa3, #ff85c2) !important;
-    color: #ffffff !important;
-    
-}
 /* ============================================================
-   NOVA BOLHA DA ASSISTENTE VIRTUAL (SUBSTITUI O TEXTO SHINY)
+   NOVA BOLHA DA ASSISTENTE VIRTUAL PERFEITA
    ============================================================ */
-
 .chat-circle { 
     position: absolute; 
     top: 250px;       /* Altera a altura dela na tela */
@@ -140,9 +129,6 @@
     z-index: 1;
 }
 </style>
-
-
-    
 </head>
 
 <body>
@@ -167,31 +153,28 @@
         <a href="quiz.html"><button>Meu cronograma perfeito</button></a>
     </div>
 
-        <div class="circles-container">
-    <a href="forum.html" class="circle-link forum-circle">
-        <div class="circle"><span>Fórum</span></div>
-    </a>
-    <a href="cuidados.html" class="circle-link top-circle">
-        <div class="circle"><span>Cuidados</span></div>
-    </a>
-    <a href="produtos.html" class="circle-link bottom-circle">
-        <div class="circle"><span>Produtos</span></div>
-    </a>
-    
-    <div class="chat-circle" onclick="abrirChatBot(event)">
-        <div class="avatar-container-animado">
-            <img src="assistente1.png.png" alt="Assistente Ativa" class="avatar-frame-1">
-            <img src="assistente2.png.png" alt="Assistente Piscando" class="avatar-frame-2">
+    <div class="circles-container">
+        <a href="forum.html" class="circle-link forum-circle">
+            <div class="circle"><span>Fórum</span></div>
+        </a>
+        <a href="cuidados.html" class="circle-link top-circle">
+            <div class="circle"><span>Cuidados</span></div>
+        </a>
+        <a href="produtos.html" class="circle-link bottom-circle">
+            <div class="circle"><span>Produtos</span></div>
+        </a>
+        
+        <div class="chat-circle" onclick="abrirChatBot(event)">
+            <div class="avatar-container-animado">
+                <img src="assistente1.png.png" alt="Assistente Ativa" class="avatar-frame-1">
+                <img src="assistente2.png.png" alt="Assistente Piscando" class="avatar-frame-2">
+            </div>
         </div>
-    </div>
-</div>
     </div>
 </section>
 </div>
 
-<!-- ANÚNCIOS DIREITA -->
 <div class="anuncios-lateral" id="anunciosDireita">
-
     <a class="anuncio ativo" href="https://www.chevrolet.com.br/" target="_blank">
         <img class="anuncio-header" src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=600&auto=format&fit=crop" alt="Chevrolet">
         <div class="anuncio-body">
@@ -246,17 +229,15 @@
             <div class="anuncio-abrir">Abrir ›</div>
         </div>
     </a>
-
 </div>
 </div>
 
-<!-- CHAT MODAL -->
 <div id="chat-overlay">
     <div id="chat-box">
         <div id="chat-header">
-            <div class="chat-avatar"></div>
+            <img src="assistente1.png" alt="Assistente" style="width: 42px; height: 42px; border-radius: 50%; object-fit: cover;">
             <div>
-                <div>Shiny</div>
+                <div>Shiny IA</div>
                 <div style="font-size:12px;font-weight:400;opacity:0.9;">Especialista em cuidados capilares</div>
             </div>
             <span class="chat-fechar" onclick="fecharChatBot()">✕</span>
@@ -289,7 +270,7 @@ function abrirChatBot(e) {
     document.getElementById('chat-overlay').classList.add('aberto');
     const msgs = document.getElementById('chat-mensagens');
     if (msgs.children.length === 0) {
-        adicionarMsg('bot', ' Olá! Sou a Shiny. Como posso ajudar com os cuidados do seu cabelo hoje?');
+        adicionarMsg('bot', 'Olá! Sou a Shiny IA. Como posso ajudar com os cuidados do seu cabelo hoje?');
     }
     setTimeout(() => document.getElementById('chat-input').focus(), 100);
 }
